@@ -1,0 +1,70 @@
+.wrap {
+  padding: 24px;
+}
+body{
+  background-color: rgba(255, 255, 255, 0.84);
+}
+.topbar{
+  height: 44px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom: 1px solid #e5e7eb;
+}
+.panel{ background:#fff; border-radius:12px; box-shadow:0 10px 25px rgb(255, 247, 247); padding:24px; margin-top:16px; }
+.brand{ color:#475569; font-size:14px; }
+.right{ display:flex; align-items:center; gap:12px; }
+.welcome{ color:#64748b; }
+.logout{ height:28px; padding:0 10px; border:1px solid #e5e7eb; background:#fff; color:#374151; border-radius:6px; cursor:pointer; }
+.title{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  color: #ff9eb5;
+  margin-bottom: 20px;
+}
+.rechargeDeductionTitle{
+  text-align: left;
+  font-size: large;
+  color: #374151;
+  margin-bottom: 20px;
+}
+.form{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.field label{ display:block; font-size:12px; color:#64748b; margin-bottom:6px; }
+.field select{
+  width: 310px; height: 38px; border-radius: 8px; border: 1px solid #d1d5db; background:#ffffff; color:#111827; padding: 0 12px;
+}
+.field input{
+  width: 280px; height: 38px; border-radius: 8px; border: 1px solid #d1d5db; background:#ffffff; color:#111827; padding: 0 12px;
+}
+.errorInput{ border-color:#ef4444 !important; box-shadow:0 0 0 3px rgba(239,68,68,0.15);}
+.radios{ display:flex; flex-direction: row; gap:16px; align-items:center; }
+.radios label{ display:inline-flex; align-items:center; gap:8px; }
+.radios input[type="radio"]{ width:20px; height:20px; transform: scale(0.8);cursor: pointer; }
+.radiosError{ border:1px solid #ef4444; border-radius:8px; padding:8px; }
+.submit{ height:36px; padding:0 20px; border:none; background:#ff9eb5; color:#fff; border-radius:8px; cursor:pointer; justify-self:left; }
+.divider{ border-top:1px dashed #60a5fa; margin:24px 0; }
+.tableWrap{ margin-top:24px; }
+.table{ width:100%; border-collapse:collapse; color: #0b0f14 }
+.table th, .table td{ border-bottom:1px solid #e5e7eb; padding:10px; text-align:left; }
+.table th{ font-weight: 400; }
+.tagRecharge{ background:#86efac; color:#065f46; padding:2px 8px; border-radius:999px; }
+.tagDeduct{ background:#fecaca; color:#7f1d1d; padding:2px 8px; border-radius:999px; }
+.tagImage{ background:#fecaca; color:#7f1d1d; padding:2px 8px; border-radius:999px; }
+.tagVideo{ background:#fecaca; color:#7f1d1d; padding:2px 8px; border-radius:999px; }
+.tagRefund{ background:#86efac; color:#065f46; padding:2px 8px; border-radius:999px; }
+.numPlus{ color:#16a34a; font-weight:600; }
+.numMinus{ color:#dc2626; font-weight:600; }
+.empty{ text-align:center; color:#94a3b8; }
+.pagination{ display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:12px;color: #0b0f14 }
+.totalTip{ margin-right:auto; color:#475569; }
+.pageInfo{ color:#475569; }
+.pageBtn{ height:28px; padding:0 8px; border:1px solid #e5e7eb; background:#fff; border-radius:6px; cursor:pointer; }
+.pageList{ display:flex; gap:6px; }
+.pageNum{ height:28px; padding:0 8px; border:1px solid #e5e7eb; background:#fff; border-radius:6px; cursor:pointer; }
+.active{ background:#ff9eb5; color:#fff; border-color:#ff9eb5; }

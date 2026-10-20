@@ -1,0 +1,47 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  width: 360px;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  padding: 20px 24px;
+}
+.title {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+}
+.content {
+  font-size: 14px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.confirm {
+  background: #f59e0b;
+  border: none;
+  color: #111827;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cancel {
+  background: #374151;
+  border: none;
+  color: #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}

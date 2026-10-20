@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+dist
+.git
+.env
+.env.local
+.env.*.local
+deployments/.env
+server/media
+*.log

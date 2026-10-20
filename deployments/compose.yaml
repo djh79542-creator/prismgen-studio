@@ -1,0 +1,70 @@
+# 本地/单机部署：nginx 托管前端并反代接口，接口进程在同一个镜像内由 supervisor 拉起
+# 使用方式：
+#   cp .env.example .env   # 填入自己的凭据
+#   docker compose up -d --build
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: prismgen-demo:local
+    container_name: prismgen-app
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HTTP_PORT: 7008
+      MYSQL_HOST: ${MYSQL_HOST:-db}
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER:-prismgen}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?先在 .env 里设置数据库密码}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-prismgen}
+      MEDIA_ROOT: ${MEDIA_ROOT:-/app/media}
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET:?先在 .env 里设置会话密钥}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      PRISM_MODELHUB_KEY: ${PRISM_MODELHUB_KEY:-}
+      MODELHUB_BASE_URL: ${MODELHUB_BASE_URL:-}
+      MODELHUB_TIMEOUT_MS: ${MODELHUB_TIMEOUT_MS:-120000}
+      MOTION_API_BASE: ${MOTION_API_BASE:-https://api-beijing.klingai.com}
+      MOTION_CREATE_PATH: ${MOTION_CREATE_PATH:-/v1/videos/image2video}
+      MOTION_STATUS_PATH: ${MOTION_STATUS_PATH:-/v1/videos/image2video}
+      MOTION_KEY_ID: ${MOTION_KEY_ID:-}
+      MOTION_KEY_SECRET: ${MOTION_KEY_SECRET:-}
+      MOTION_WEBHOOK_URL: ${MOTION_WEBHOOK_URL:-}
+      RASTER_ACCESS_KEY_ID: ${RASTER_ACCESS_KEY_ID:-}
+      RASTER_SECRET_ACCESS_KEY: ${RASTER_SECRET_ACCESS_KEY:-}
+      OUTBOUND_PROXY_URL: ${OUTBOUND_PROXY_URL:-}
+      TZ: Asia/Shanghai
+    ports:
+      - "${APP_PORT:-8080}:80"
+    volumes:
+      - ./volumes/media:/app/media
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  db:
+    image: mysql:8.0
+    container_name: prismgen-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?先在 .env 里设置 root 密码}
+      MYSQL_USER: ${MYSQL_USER:-prismgen}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?先在 .env 里设置数据库密码}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-prismgen}
+      TZ: Asia/Shanghai
+    volumes:
+      - ./volumes/db:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/prismgen.cnf:ro
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 8

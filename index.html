@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrismGen 影像工坊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        /* 默认深色主题 */
+        --bg-primary: #0d1017;
+        --bg-secondary: #161a23;
+        --bg-card: #12161f;
+        --bg-card-alpha: rgba(18, 22, 31, 0.6);
+        --text-primary: #e6e8ee;
+        --text-secondary: #9aa3b2;
+        --text-tertiary: #6b7482;
+        --border-primary: rgba(255, 255, 255, 0.09);
+        --accent-primary: #38bdf8;
+        --accent-secondary: #a78bfa;
+        --accent-primary-hover: #0ea5e9;
+        --accent-secondary-hover: #8b5cf6;
+        --accent-shadow: rgba(56, 189, 248, 0.22);
+        --text-on-accent: #04263a;
+        --bg-disabled: #2b3240;
+        --text-disabled: #6b7482;
+        --bg-error: rgba(127, 29, 29, 0.45);
+        --border-error: #a31d1d;
+        --text-error: #fca5a5;
+      }
+      html[data-theme="light"] {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f2f4f8;
+        --bg-card: #ffffff;
+        --bg-card-alpha: rgba(255, 255, 255, 0.65);
+        --text-primary: #14181f;
+        --text-secondary: #4a5566;
+        --text-tertiary: #7c8697;
+        --border-primary: rgba(0, 0, 0, 0.09);
+        --accent-primary: #6366f1;
+        --accent-secondary: #ec4899;
+        --accent-primary-hover: #4f46e5;
+        --accent-secondary-hover: #db2777;
+        --accent-shadow: rgba(99, 102, 241, 0.2);
+        --text-on-accent: #ffffff;
+        --bg-disabled: #e6e8ee;
+        --text-disabled: #9aa3b2;
+        --bg-error: rgba(254, 242, 242, 1);
+        --border-error: #ef4444;
+        --text-error: #dc2626;
+      }
+      /* 隐藏 Edge/IE 原生密码显示与清除按钮 */
+      input[type="password"]::-ms-reveal { display: none; }
+      input[type="password"]::-ms-clear, input::-ms-clear { display: none; }
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
